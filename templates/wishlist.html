@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Wishlist</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for(
+    'static',
+    filename='css/style.css'
+    ) }}">
+
+</head>
+
+<body>
+
+    <div class="wishlist-container">
+
+        <h2>
+
+            My Wishlist ❤️
+
+        </h2>
+
+        {% for product in products %}
+
+        <div class="wishlist-card">
+
+            <img
+            src="{{ url_for(
+            'static',
+            filename='uploads/' +
+            product.image
+            ) }}"
+            width="120">
+
+            <h3>
+
+                {{ product.name }}
+
+            </h3>
+
+            <p>
+
+                ₹{{ product.price }}
+
+            </p>
+
+            <a href="/remove_wishlist/
+            {{ product.wishlist_id }}">
+
+                <button>
+
+                    Remove
+
+                </button>
+
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</body>
+
+</html>

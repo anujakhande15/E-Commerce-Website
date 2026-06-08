@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Product</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static',filename='css/style.css')}}">
+</head>
+
+<body>
+
+    <div class="form-container">
+
+        <form method="POST"
+              enctype="multipart/form-data">
+
+            <h2>Add Product</h2>
+
+            <input type="text"
+                   name="name"
+                   placeholder="Enter Product name : "
+                   required>
+
+            <input type="number"
+                   name="price"
+                   placeholder="Enter product price : "
+                   required>
+
+            
+
+            <select name="category_id" required>
+
+                {% for category in categories %}
+
+                <option value="{{ category.id }}">
+
+                    {{ category.name }}
+
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+            
+
+            <input type="file"
+                   name="image"
+                   required>
+
+            <textarea
+                   name="description"
+                   placeholder="Description">
+            </textarea>
+
+            <button type="submit">
+                Add Product
+            </button>
+
+        </form>
+
+    </div>
+
+</body>
+</html>

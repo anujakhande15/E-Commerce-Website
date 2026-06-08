@@ -1,0 +1,371 @@
+body{
+    margin: 0;
+    font-family: Arial;
+    background-color: #f4f4f4;
+}
+
+
+nav{
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+}
+
+nav ul{
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+
+nav li{
+    cursor: pointer;
+}
+
+
+.hero{
+    text-align: center;
+    margin-top: 100px;
+    background-color: white;
+}
+
+.hero h2{
+    font-size: 40px;
+    color: darkblue;
+
+}
+
+
+.hero p{
+    font-size: 20px;
+}
+
+
+
+.title{
+    text-align: center;
+    margin-top: 40px;
+}
+
+
+
+
+.product-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 40px;
+}
+
+
+
+.card{
+    background-color: white;
+    width: 250px;
+    border-radius: 10px;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0px 0px 10px gray;
+    
+
+}
+
+
+
+
+.card img{
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+
+.card h3{
+    margin-top: 15px;
+}
+
+.card p{
+    font-size: 20px;
+    color: green;
+}
+
+
+
+
+button{
+
+    padding: 10px 20px;
+    background-color: orange;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+
+
+button:hover{
+    background-color: darkorange;
+}
+
+
+.details-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+
+.details-card{
+    background-color: white;
+    display: flex;
+    gap: 40px;
+    padding: 30px;
+    border-radius: 10px;
+    width: 800px;
+    box-shadow: 0px 0px 10px gray;
+}
+
+
+
+
+.details-card img{
+    width: 350px;
+    border-radius: 10px;
+
+}
+
+.info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.price{
+    font-size: 25px;
+    color: green;
+}
+
+
+
+
+
+.cart-container{
+    width: 80%;
+    margin: auto;
+    margin-top: 40px;
+}
+
+
+.cart-item{
+    background-color: wheat;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.cart-item img{
+    width: 120px;
+    border-radius: 10px;
+}
+
+
+
+.form-container{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+
+}
+
+form{
+    background-color: white;
+    padding: 40px;
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px gray;
+}
+
+form h2{
+    text-align: center;
+}
+
+
+form input{
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+}
+
+
+.admin-container{
+    width: 80%;
+    margin: auto;
+    margin-bottom: 50px;
+}
+
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+
+}
+
+
+table,th,td{
+    border: 1px solid gray;
+}
+
+
+th,td{
+    padding: 15px;
+    text-align: center;
+}
+
+textarea{
+    width: 100%;
+    margin-top: 15px;
+    padding: 10px;
+}
+
+
+
+a{
+    text-decoration: none;
+}
+
+
+
+
+
+
+.checkout{
+
+    width: 500px;
+
+    margin: auto;
+
+    margin-top: 50px;
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 10px;
+}
+
+
+
+.orders-container{
+
+    width: 80%;
+
+    margin: auto;
+
+    margin-top: 50px;
+}
+
+
+
+
+.admin-container img{
+    border-radius: 5px;
+}
+
+input[type=file]{
+    margin-top: 15px;
+}
+
+
+
+
+
+
+
+
+
+.category-menu{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+    padding:15px;
+
+    background:#fff;
+
+    margin-bottom:20px;
+}
+
+.category-menu a{
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    color:black;
+}
+
+.category-menu a:hover{
+
+    color:blue;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.review-form{
+
+    width:70%;
+    margin:auto;
+    margin-top:30px;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+}
+
+.review-form textarea{
+
+    width:100%;
+    height:100px;
+    margin-top:15px;
+}
+
+.reviews{
+
+    width:70%;
+    margin:auto;
+    margin-top:30px;
+}
+
+.review-card{
+
+    background:white;
+    padding:20px;
+    margin-bottom:15px;
+    border-radius:10px;
+}

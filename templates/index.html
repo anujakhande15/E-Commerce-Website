@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ecommerce Website</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static',filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <nav>
+
+        <h1>My Shop</h1>
+
+        <ul>
+
+            <li>Home</li>
+
+            <li>Products</li>
+
+            <li>
+                <a href="/cart" style="color:white;">
+                    Cart ({{ cart_count }})
+                </a>
+            </li>
+
+            <li>
+
+                <a href="/wishlist"
+                style="color:white;">
+
+                    ❤️ Wishlist
+
+                </a>
+
+            </li>
+
+            {% if user %}
+
+            <li>
+                Welcome {{ user }}
+            </li>
+
+            <li>
+                <a href="/logout" style="color:white;">
+                    Logout
+                </a>
+            </li>
+
+            <li>
+                <a href="/orders" style="color:white;">
+                    My Orders
+                </a>
+            </li>
+
+            {% else %}
+
+            <li>
+                <a href="/login" style="color:white;">
+                    Login
+                </a>
+            </li>
+
+            <li>
+                <a href="/register" style="color:white;">
+                    Register
+                </a>
+            </li>
+
+            {% endif %}
+
+        </ul>
+
+    </nav>
+
+    
+
+    <div class="category-menu">
+
+        <a href="/">
+            All Products
+        </a>
+
+        {% for category in categories %}
+
+        <a href="/category/{{ category.id }}">
+
+            {{ category.name }}
+
+        </a>
+
+        {% endfor %}
+
+    </div>
+
+    <section class="hero">
+
+        <h2>Welcome to my Ecommerce Store</h2>
+
+        <p>Buy Best Product Online</p>
+
+        <button>Shop Now</button>
+
+    </section>
+
+    <section class="products">
+
+        <h2 class="title">
+
+            Featured Products
+
+        </h2>
+
+        <div class="product-container">
+
+            {% for product in products %}
+
+            <div class="card">
+
+                <img src="{{ url_for(
+                'static',
+                filename='uploads/' + product.image
+                ) }}">
+
+                <h3>
+
+                    {{ product.name }}
+
+                </h3>
+
+                <p>
+
+                    ₹{{ product.price }}
+
+                </p>
+
+                <p>
+
+                    Category :
+                    {{ product.category_name }}
+
+                </p>
+
+                <a href="/product/{{ product.id }}">
+
+                    <button>
+
+                        View Details
+
+                    </button>
+
+                </a>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+</body>
+</html>

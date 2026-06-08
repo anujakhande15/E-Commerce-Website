@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Admin Panel</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static',
+    filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <nav>
+
+        <h1>Admin Panel</h1>
+
+        <ul>
+
+            <li>
+                <a href="/" style="color:white;">
+                    Home
+                </a>
+            </li>
+
+            <li>
+                <a href="/add_product"
+                style="color:white;">
+                    Add Product
+                </a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+    <div class="admin-container">
+
+        <h2>All Products</h2>
+
+        <table>
+
+            <tr>
+
+                <th>ID</th>
+
+                <th>Image</th>
+
+                <th>Name</th>
+
+                <th>Price</th>
+
+                <th>Actions</th>
+
+            </tr>
+
+            {% for product in products %}
+
+            <tr>
+
+                <td>{{ product.id }}</td>
+
+                <td>
+
+                    <img
+                    src="{{ url_for(
+                    'static',
+                    filename='uploads/' + product.image
+                    ) }}"
+                    width="80">
+
+                </td>
+
+                <td>
+
+                    {{ product.name }}
+
+                </td>
+
+                <td>
+
+                    ₹{{ product.price }}
+
+                </td>
+
+                <td>
+
+                    <a href="/edit_product/{{ product.id }}">
+
+                        <button>Edit</button>
+
+                    </a>
+
+                    <a href="/delete_product/{{ product.id }}">
+
+                        <button>Delete</button>
+
+                    </a>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+</body>
+</html>
