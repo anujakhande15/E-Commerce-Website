@@ -37,7 +37,7 @@
         <div class="cart-item">
 
             <img src="{{ url_for('static',
-            filename='images/' + item.image) }}">
+            filename='uploads/' + item.image) }}">
 
             <div>
 
@@ -60,7 +60,7 @@
         <h2>Total: ₹{{ total }}</h2>
 
         <a href="/checkout">
-            
+                
             <button>Checkout</button>
         </a>
 

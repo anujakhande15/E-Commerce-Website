@@ -424,22 +424,39 @@ def delete_product(id):
 
 
 
-
-
 @app.route("/checkout")
 def checkout():
-    
-    cart = session.get('cart',[])
-    
+
+    cart = session.get("cart", [])
+
     total = 0
 
     for item in cart:
-        total += item['price']
 
-    return render_template("checkout.html",cart=cart,total=total)
+        total += item["price"]
 
+    discount = session.get(
+        "discount",
+        0
+    )
 
+    final_total = total - (
+        total * discount / 100
+    )
 
+    return render_template(
+
+        "checkout.html",
+
+        cart=cart,
+
+        total=total,
+
+        discount=discount,
+
+        final_total=final_total
+
+    )
 
 @app.route("/place_order")
 def place_order():
@@ -452,15 +469,51 @@ def place_order():
 
         return redirect("/login")
 
+
+
+    discount = session.get(
+        "discount",
+        0
+    )
+
+    
+
+    total = 0
+
+    for item in cart:
+
+        total += item["price"]
+
+
+
+    final_total = total - (
+        total * discount / 100
+    )
+
+    
+
     for item in cart:
 
         query = """
 
         INSERT INTO orders
 
-        (username, product_name, price)
+        (
+            username,
+            product_name,
+            price,
+            total_amount,
+            discount
+        )
 
-        VALUES(%s,%s,%s)
+        VALUES
+        (
+            %s,
+            %s,
+            %s,
+            %s,
+            %s
+        )
 
         """
 
@@ -470,18 +523,34 @@ def place_order():
 
             item["name"],
 
-            item["price"]
+            item["price"],
+
+            final_total,
+
+            discount
 
         )
 
-        cursor.execute(query, values)
+        cursor.execute(
+            query,
+            values
+        )
 
     conn.commit()
 
+    
+
     session["cart"] = []
 
-    return redirect("/orders")
+    
 
+    session["discount"] = 0
+
+    session["message"] = ""
+
+    return redirect(
+        "/orders"
+    )
 
 
 
@@ -618,7 +687,7 @@ def add_wishlist(product_id):
     if not username:
         return redirect("/login")
 
-    # Check existing wishlist item
+    
 
     check_query = """
 
@@ -645,7 +714,7 @@ def add_wishlist(product_id):
             f"/product/{product_id}"
         )
 
-    # Insert only if not exists
+    
 
     query = """
 
@@ -741,11 +810,13 @@ def wishlist():
 )
 def remove_wishlist(id):
 
+    username = session.get("user")
+
     query = """
 
     DELETE FROM wishlist
 
-    WHERE id=%s
+    WHERE id=%s AND username=%s
 
     """
 
@@ -753,7 +824,7 @@ def remove_wishlist(id):
 
         query,
 
-        (id,)
+        (id,username)
 
     )
 
@@ -762,6 +833,41 @@ def remove_wishlist(id):
     return redirect(
         "/wishlist"
     )
+
+
+
+
+@app.route("/apply_coupon",methods=["POST"])
+def apply_coupon():
+
+    code = request.form["code"]
+
+    query = "SELECT * FROM coupons WHERE code=%s"
+
+    cursor.execute(query,(code,))
+
+    coupon = cursor.fetchone()
+
+    if coupon:
+
+        session["discount"] = (coupon["discount"])
+    
+    else:
+        session["discount"] = 0
+    
+    return redirect("/checkout")
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

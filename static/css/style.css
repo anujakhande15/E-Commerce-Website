@@ -369,3 +369,33 @@ input[type=file]{
     margin-bottom:15px;
     border-radius:10px;
 }
+
+
+
+
+
+
+
+
+
+
+
+.wishlist-container{
+
+    width:80%;
+
+    margin:auto;
+
+    margin-top:40px;
+}
+
+.wishlist-card{
+
+    background:white;
+
+    padding:20px;
+
+    margin-bottom:20px;
+
+    border-radius:10px;
+}
