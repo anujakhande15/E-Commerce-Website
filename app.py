@@ -457,26 +457,32 @@ def checkout():
         final_total=final_total
 
     )
-
-@app.route("/place_order")
+@app.route(
+    "/place_order",
+    methods=["POST"]
+)
 def place_order():
 
     username = session.get("user")
 
     cart = session.get("cart", [])
 
-    if not username:
+    payment_method = request.form[
+        "payment_method"
+    ]
 
-        return redirect("/login")
+    if payment_method == "COD":
 
+        payment_status = "Pending"
 
+    else:
+
+        payment_status = "Paid"
 
     discount = session.get(
         "discount",
         0
     )
-
-    
 
     total = 0
 
@@ -484,13 +490,9 @@ def place_order():
 
         total += item["price"]
 
-
-
     final_total = total - (
         total * discount / 100
     )
-
-    
 
     for item in cart:
 
@@ -499,21 +501,26 @@ def place_order():
         INSERT INTO orders
 
         (
-            username,
-            product_name,
-            price,
-            total_amount,
-            discount
+
+        username,
+
+        product_name,
+
+        price,
+
+        total_amount,
+
+        discount,
+
+        payment_method,
+
+        payment_status
+
         )
 
         VALUES
-        (
-            %s,
-            %s,
-            %s,
-            %s,
-            %s
-        )
+
+        (%s,%s,%s,%s,%s,%s,%s)
 
         """
 
@@ -527,7 +534,11 @@ def place_order():
 
             final_total,
 
-            discount
+            discount,
+
+            payment_method,
+
+            payment_status
 
         )
 
@@ -538,20 +549,13 @@ def place_order():
 
     conn.commit()
 
-    
-
     session["cart"] = []
-
-    
 
     session["discount"] = 0
 
-    session["message"] = ""
-
     return redirect(
-        "/orders"
+        "/payment_success"
     )
-
 
 
 
@@ -866,7 +870,14 @@ def apply_coupon():
 
 
 
+@app.route(
+    "/payment_success"
+)
+def payment_success():
 
+    return render_template(
+        "payment_success.html"
+    )
 
 
 

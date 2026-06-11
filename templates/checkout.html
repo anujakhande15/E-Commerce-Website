@@ -86,15 +86,44 @@
 
         </h2>
 
-        <a href="/place_order">
+        <hr>
 
-            <button>
+        <form
+        action="/place_order"
+        method="POST">
+
+            <h3>
+
+                Select Payment Method
+
+            </h3>
+
+            <input
+            type="radio"
+            name="payment_method"
+            value="COD"
+            checked>
+
+            Cash On Delivery
+
+            <br><br>
+
+            <input
+            type="radio"
+            name="payment_method"
+            value="Online">
+
+            Online Payment
+
+            <br><br>
+
+            <button type="submit">
 
                 Place Order
 
             </button>
 
-        </a>
+        </form>
 
     </div>
 
