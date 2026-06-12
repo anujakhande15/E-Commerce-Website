@@ -418,9 +418,38 @@ input[type=file]{
 
 
 
+
 .success-page{
 
     text-align:center;
 
     margin-top:100px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.admin-orders{
+
+    width:90%;
+
+    margin:auto;
+
+    margin-top:40px;
+}
+
+.admin-orders table{
+
+    width:100%;
 }

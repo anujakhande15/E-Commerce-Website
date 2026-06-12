@@ -26,14 +26,9 @@
             </li>
 
             <li>
-
-                <a href="/wishlist"
-                style="color:white;">
-
+                <a href="/wishlist" style="color:white;">
                     ❤️ Wishlist
-
                 </a>
-
             </li>
 
             {% if user %}
@@ -51,6 +46,13 @@
             <li>
                 <a href="/orders" style="color:white;">
                     My Orders
+                </a>
+            </li>
+
+            <li>
+                <a href="/admin/orders"
+                style="color:white;">
+                    Manage Orders
                 </a>
             </li>
 
@@ -74,8 +76,6 @@
 
     </nav>
 
-    
-
     <div class="category-menu">
 
         <a href="/">
@@ -85,9 +85,7 @@
         {% for category in categories %}
 
         <a href="/category/{{ category.id }}">
-
             {{ category.name }}
-
         </a>
 
         {% endfor %}
@@ -107,9 +105,7 @@
     <section class="products">
 
         <h2 class="title">
-
             Featured Products
-
         </h2>
 
         <div class="product-container">
@@ -124,32 +120,22 @@
                 ) }}">
 
                 <h3>
-
                     {{ product.name }}
-
                 </h3>
 
                 <p>
-
                     ₹{{ product.price }}
-
                 </p>
 
                 <p>
-
                     Category :
                     {{ product.category_name }}
-
                 </p>
 
                 <a href="/product/{{ product.id }}">
-
                     <button>
-
                         View Details
-
                     </button>
-
                 </a>
 
             </div>

@@ -457,6 +457,11 @@ def checkout():
         final_total=final_total
 
     )
+
+
+
+
+
 @app.route(
     "/place_order",
     methods=["POST"]
@@ -514,13 +519,15 @@ def place_order():
 
         payment_method,
 
-        payment_status
+        payment_status,
+
+        order_status
 
         )
 
         VALUES
 
-        (%s,%s,%s,%s,%s,%s,%s)
+        (%s,%s,%s,%s,%s,%s,%s,%s)
 
         """
 
@@ -538,7 +545,9 @@ def place_order():
 
             payment_method,
 
-            payment_status
+            payment_status,
+
+            "Pending"
 
         )
 
@@ -556,6 +565,15 @@ def place_order():
     return redirect(
         "/payment_success"
     )
+
+
+
+
+
+
+
+
+
 
 
 
@@ -878,6 +896,46 @@ def payment_success():
     return render_template(
         "payment_success.html"
     )
+
+
+
+@app.route("/admin/orders")
+def admin_orders():
+
+    query = "SELECT * FROM orders ORDER BY id DESC"
+
+    cursor.execute(query)
+
+    orders = cursor.fetchall()
+
+    return render_template("admin_orders.html",orders=orders)
+
+
+
+
+
+
+
+
+
+@app.route("/update_order_status/<int:id>/<status>")
+def update_order_status(id,status):
+
+    query = "UPDATE orders SET order_status=%s WHERE id=%s"
+
+    cursor.execute(query,(status,id))
+
+    conn.commit()
+
+    return redirect("/admin/orders")
+
+
+
+
+
+
+
+
 
 
 

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>All Orders</title>
+
+</head>
+
+<body>
+
+<h1>Admin Order Management</h1>
+
+<table border="1">
+
+<tr>
+
+<th>ID</th>
+<th>User</th>
+<th>Product</th>
+<th>Price</th>
+<th>Status</th>
+<th>Action</th>
+
+</tr>
+
+{% for order in orders %}
+
+<tr>
+
+<td>{{ order.id }}</td>
+
+<td>{{ order.username }}</td>
+
+<td>{{ order.product_name }}</td>
+
+<td>₹{{ order.price }}</td>
+
+<td>{{ order.order_status }}</td>
+
+<td>
+
+<a href="/update_order_status/{{ order.id }}/Pending">
+
+<button>
+
+Pending
+
+</button>
+
+</a>
+
+<a href="/update_order_status/{{ order.id }}/Shipped">
+
+<button>
+
+Shipped
+
+</button>
+
+</a>
+
+<a href="/update_order_status/{{ order.id }}/Delivered">
+
+<button>
+
+Delivered
+
+</button>
+
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+
+</html>

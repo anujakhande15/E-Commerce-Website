@@ -27,47 +27,21 @@
 
             <tr>
 
-                <th>
+                <th>ID</th>
 
-                    ID
+                <th>Product</th>
 
-                </th>
+                <th>Price</th>
 
-                <th>
+                <th>Total Amount</th>
 
-                    Product
+                <th>Payment Method</th>
 
-                </th>
+                <th>Payment Status</th>
 
-                <th>
+                <th>Order Status</th>
 
-                    Price
-
-                </th>
-
-                <th>
-
-                    Total Amount
-
-                </th>
-
-                <th>
-
-                    Payment Method
-
-                </th>
-
-                <th>
-
-                    Payment Status
-
-                </th>
-
-                <th>
-
-                    Date
-
-                </th>
+                <th>Date</th>
 
             </tr>
 
@@ -108,6 +82,44 @@
                 <td>
 
                     {{ order.payment_status }}
+
+                </td>
+
+                <td>
+
+                    {% if order.order_status == "Pending" %}
+
+                    <span style="color:red;">
+
+                        Pending
+
+                    </span>
+
+                    {% elif order.order_status == "Shipped" %}
+
+                    <span style="color:orange;">
+
+                        Shipped
+
+                    </span>
+
+                    {% elif order.order_status == "Delivered" %}
+
+                    <span style="color:green;">
+
+                        Delivered
+
+                    </span>
+
+                    {% else %}
+
+                    <span>
+
+                        {{ order.order_status }}
+
+                    </span>
+
+                    {% endif %}
 
                 </td>
 
