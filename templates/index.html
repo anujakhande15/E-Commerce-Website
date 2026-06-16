@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+
     <title>Ecommerce Website</title>
 
     <link rel="stylesheet"
     href="{{ url_for('static',filename='css/style.css') }}">
+
 </head>
 
 <body>
@@ -38,8 +41,8 @@
             </li>
 
             <li>
-                <a href="/logout" style="color:white;">
-                    Logout
+                <a href="/profile" style="color:white;">
+                    My Profile
                 </a>
             </li>
 
@@ -53,6 +56,12 @@
                 <a href="/admin/orders"
                 style="color:white;">
                     Manage Orders
+                </a>
+            </li>
+
+            <li>
+                <a href="/logout" style="color:white;">
+                    Logout
                 </a>
             </li>
 
@@ -94,11 +103,17 @@
 
     <section class="hero">
 
-        <h2>Welcome to my Ecommerce Store</h2>
+        <h2>
+            Welcome to my Ecommerce Store
+        </h2>
 
-        <p>Buy Best Product Online</p>
+        <p>
+            Buy Best Product Online
+        </p>
 
-        <button>Shop Now</button>
+        <button>
+            Shop Now
+        </button>
 
     </section>
 
@@ -133,9 +148,13 @@
                 </p>
 
                 <a href="/product/{{ product.id }}">
+
                     <button>
+
                         View Details
+
                     </button>
+
                 </a>
 
             </div>
@@ -147,4 +166,5 @@
     </section>
 
 </body>
+
 </html>

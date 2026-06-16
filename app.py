@@ -899,6 +899,13 @@ def payment_success():
 
 
 
+
+
+
+
+
+
+
 @app.route("/admin/orders")
 def admin_orders():
 
@@ -909,6 +916,12 @@ def admin_orders():
     orders = cursor.fetchall()
 
     return render_template("admin_orders.html",orders=orders)
+
+
+
+
+
+
 
 
 
@@ -936,8 +949,201 @@ def update_order_status(id,status):
 
 
 
+@app.route("/profile")
+def profile():
+
+    username = session.get("user")
+
+    if not username:
+
+        return redirect("/login")
+
+    query = """
+
+    SELECT *
+
+    FROM users
+
+    WHERE username=%s
+
+    """
+
+    cursor.execute(
+        query,
+        (username,)
+    )
+
+    user = cursor.fetchone()
+
+    return render_template(
+        "profile.html",
+        user=user
+    )
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+@app.route(
+"/edit_profile",
+methods=["GET","POST"]
+)
+def edit_profile():
+
+    username = session.get("user")
+
+    if request.method == "POST":
+
+        email = request.form["email"]
+
+        address = request.form["address"]
+
+        query = """
+
+        UPDATE users
+
+        SET
+
+        email=%s,
+
+        address=%s
+
+        WHERE username=%s
+
+        """
+
+        cursor.execute(
+
+            query,
+
+            (
+                email,
+                address,
+                username
+            )
+
+        )
+
+        conn.commit()
+
+        return redirect(
+            "/profile"
+        )
+
+    cursor.execute(
+
+        "SELECT * FROM users WHERE username=%s",
+
+        (username,)
+    )
+
+    user = cursor.fetchone()
+
+    return render_template(
+
+        "edit_profile.html",
+
+        user=user
+
+    )
+
+
+
+
+
+
+
+
+
+@app.route(
+"/change_password",
+methods=["GET","POST"]
+)
+def change_password():
+
+    username = session.get("user")
+
+    if request.method == "POST":
+
+        old_password = request.form[
+            "old_password"
+        ]
+
+        new_password = request.form[
+            "new_password"
+        ]
+
+        query = """
+
+        SELECT *
+
+        FROM users
+
+        WHERE
+
+        username=%s
+
+        AND
+
+        password=%s
+
+        """
+
+        cursor.execute(
+
+            query,
+
+            (
+                username,
+                old_password
+            )
+
+        )
+
+        user = cursor.fetchone()
+
+        if user:
+
+            update_query = """
+
+            UPDATE users
+
+            SET password=%s
+
+            WHERE username=%s
+
+            """
+
+            cursor.execute(
+
+                update_query,
+
+                (
+                    new_password,
+                    username
+                )
+
+            )
+
+            conn.commit()
+
+            return redirect(
+                "/profile"
+            )
+
+    return render_template(
+        "change_password.html"
+    )
 
 
 

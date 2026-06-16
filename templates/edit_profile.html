@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>
+
+Edit Profile
+
+</title>
+
+</head>
+
+<body>
+
+<form method="POST">
+
+<input
+type="email"
+name="email"
+value="{{ user.email }}">
+
+<br><br>
+
+<textarea
+name="address">
+
+{{ user.address }}
+
+</textarea>
+
+<br><br>
+
+<button type="submit">
+
+Save Changes
+
+</button>
+
+</form>
+
+</body>
+
+</html>

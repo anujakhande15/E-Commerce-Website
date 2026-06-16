@@ -650,3 +650,100 @@ Delivered
 * Database Table Alteration
 * Real-World E-Commerce Workflow
 * Order Lifecycle Management
+
+
+
+
+
+
+
++--------------------------------------------------+
+|            FLASK E-COMMERCE WEBSITE              |
++--------------------------------------------------+
+                        |
+                        ▼
++------------------+
+| User Register    |
++------------------+
+        |
+        ▼
++------------------+
+| User Login       |
++------------------+
+        |
+        ▼
++------------------+
+| Home Page        |
+| View Products    |
++------------------+
+        |
+        ▼
++------------------+
+| Product Details  |
++------------------+
+        |
+        ├─────────────► Add Review
+        |
+        ├─────────────► Add Wishlist
+        |
+        ▼
++------------------+
+| Add To Cart      |
++------------------+
+        |
+        ▼
++------------------+
+| Cart Page        |
+| Remove Products  |
+| Calculate Total  |
++------------------+
+        |
+        ▼
++------------------+
+| Checkout         |
++------------------+
+        |
+        ├─────────────► Apply Coupon
+        |
+        ├─────────────► Select Payment
+        |              (COD / Online)
+        |
+        ▼
++------------------+
+| Place Order      |
++------------------+
+        |
+        ▼
++------------------+
+| Payment Success  |
++------------------+
+        |
+        ▼
++------------------+
+| My Orders        |
++------------------+
+        |
+        ▼
++------------------+
+| Order Tracking   |
+| Pending          |
+| Shipped          |
+| Delivered        |
++------------------+
+        |
+        ▼
++------------------+
+| Admin Panel      |
++------------------+
+        |
+        ├─────────────► Add Product
+        |
+        ├─────────────► Edit Product
+        |
+        ├─────────────► Delete Product
+        |
+        ▼
++------------------+
+| Manage Orders    |
+| Update Status    |
++------------------+

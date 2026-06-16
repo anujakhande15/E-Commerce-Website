@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>
+
+My Profile
+
+</title>
+
+</head>
+
+<body>
+
+<h1>
+
+My Account
+
+</h1>
+
+{% if user.profile_image %}
+
+<img
+src="{{ url_for(
+'static',
+filename='profiles/' +
+user.profile_image
+) }}"
+width="150">
+
+{% endif %}
+
+<p>
+
+Username:
+
+{{ user.username }}
+
+</p>
+
+<p>
+
+Email:
+
+{{ user.email }}
+
+</p>
+
+<p>
+
+Address:
+
+{{ user.address }}
+
+</p>
+
+<a href="/edit_profile">
+
+<button>
+
+Edit Profile
+
+</button>
+
+</a>
+
+<a href="/change_password">
+
+<button>
+
+Change Password
+
+</button>
+
+</a>
+
+</body>
+
+</html>
