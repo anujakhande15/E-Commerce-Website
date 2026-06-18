@@ -1147,5 +1147,80 @@ def change_password():
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@app.route("/admin/dashboard")
+def admin_dashboard():
+
+    
+
+    cursor.execute(
+        "SELECT COUNT(*) AS total_users FROM users"
+    )
+
+    total_users = cursor.fetchone()
+
+    
+
+    cursor.execute(
+        "SELECT COUNT(*) AS total_products FROM products"
+    )
+
+    total_products = cursor.fetchone()
+
+    
+
+    cursor.execute(
+        "SELECT COUNT(*) AS total_orders FROM orders"
+    )
+
+    total_orders = cursor.fetchone()
+
+    
+
+    cursor.execute(
+        """
+        SELECT SUM(total_amount)
+        AS total_sales
+        FROM orders
+        """
+    )
+
+    total_sales = cursor.fetchone()
+
+    return render_template(
+
+        "admin_dashboard.html",
+
+        total_users=total_users,
+
+        total_products=total_products,
+
+        total_orders=total_orders,
+
+        total_sales=total_sales
+
+    )
+
+
+
+
+
+
+
+
 if __name__ == "__main__":
     app.run(debug=True)
