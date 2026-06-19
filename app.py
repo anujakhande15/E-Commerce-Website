@@ -1222,5 +1222,49 @@ def admin_dashboard():
 
 
 
+
+
+@app.route("/search")
+def search():
+
+    keyword = request.args.get(
+        "keyword"
+    )
+
+    query = """
+
+    SELECT *
+
+    FROM products
+
+    WHERE name LIKE %s
+
+    """
+
+    search_term = f"%{keyword}%"
+
+    cursor.execute(
+
+        query,
+
+        (search_term,)
+
+    )
+
+    products = cursor.fetchall()
+
+    return render_template(
+
+        "search_results.html",
+
+        products=products,
+
+        keyword=keyword
+
+    )
+
+
+
+
 if __name__ == "__main__":
     app.run(debug=True)

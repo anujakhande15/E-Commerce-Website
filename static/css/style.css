@@ -510,3 +510,35 @@ input[type=file]{
 
     font-size:30px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.search-box{
+
+    display:flex;
+
+    gap:10px;
+}
+
+.search-results{
+
+    width:90%;
+
+    margin:auto;
+}

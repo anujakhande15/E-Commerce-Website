@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>
+
+Search Results
+
+</title>
+
+<link rel="stylesheet"
+href="{{ url_for(
+'static',
+filename='css/style.css'
+) }}">
+
+</head>
+
+<body>
+
+<h1>
+
+Search Results For
+
+"{{ keyword }}"
+
+</h1>
+
+{% if products %}
+
+<div class="products">
+
+{% for product in products %}
+
+<div class="product-card">
+
+<img
+src="{{ url_for(
+'static',
+filename='uploads/' +
+product.image
+) }}"
+width="150">
+
+<h3>
+
+{{ product.name }}
+
+</h3>
+
+<p>
+
+₹{{ product.price }}
+
+</p>
+
+<a href="/product/{{ product.id }}">
+
+<button>
+
+View Product
+
+</button>
+
+</a>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% else %}
+
+<h2>
+
+No Products Found
+
+</h2>
+
+{% endif %}
+
+</body>
+
+</html>
