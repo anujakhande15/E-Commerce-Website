@@ -303,6 +303,7 @@ def add_products():
         price = request.form["price"]
         description = request.form["description"]
         category_id = request.form["category_id"]
+        stock = request.form["stock"]
 
         image = request.files["image"]
 
@@ -318,15 +319,16 @@ def add_products():
         )
 
         query = """INSERT INTO products
-                (name, price, image, description, category_id)
-                VALUES(%s,%s,%s,%s,%s)"""
+                (name, price, image, description, category_id,stock)
+                VALUES(%s,%s,%s,%s,%s,%s)"""
 
         values = (
             name,
             price,
             filename,
-            description
-            ,category_id
+            description,
+            category_id,
+            stock
         )
 
         cursor.execute(query, values)
@@ -460,8 +462,6 @@ def checkout():
 
 
 
-
-
 @app.route(
     "/place_order",
     methods=["POST"]
@@ -556,6 +556,24 @@ def place_order():
             values
         )
 
+        update_query = """
+
+        UPDATE products
+
+        SET stock = stock - 1
+
+        WHERE id=%s
+
+        """
+
+        cursor.execute(
+
+            update_query,
+
+            (item["id"],)
+
+        )
+
     conn.commit()
 
     session["cart"] = []
@@ -565,7 +583,6 @@ def place_order():
     return redirect(
         "/payment_success"
     )
-
 
 
 
@@ -1262,6 +1279,17 @@ def search():
         keyword=keyword
 
     )
+
+
+
+@app.route("/admin/inventory")
+def inventory():
+
+    cursor.execute("SELECT * FROm products")
+
+    product = cursor.fetchall()
+
+    return render_template("inventory.html",product=product)
 
 
 

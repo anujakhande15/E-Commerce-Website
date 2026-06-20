@@ -63,7 +63,27 @@
 
                 </p>
 
-                
+                {% if product.stock > 0 %}
+
+                <p>
+
+                    Stock:
+
+                    {{ product.stock }}
+
+                </p>
+
+                {% else %}
+
+                <p style="color:red;">
+
+                    Out Of Stock
+
+                </p>
+
+                {% endif %}
+
+                {% if product.stock > 0 %}
 
                 <a href="/add_to_cart/{{ product.id }}">
 
@@ -75,9 +95,17 @@
 
                 </a>
 
-                <br><br>
+                {% else %}
 
-                
+                <button disabled>
+
+                    Out Of Stock
+
+                </button>
+
+                {% endif %}
+
+                <br><br>
 
                 <a href="/add_wishlist/{{ product.id }}">
 
@@ -114,8 +142,6 @@
         </div>
 
     </div>
-
-    
 
     <div class="review-form">
 
@@ -174,8 +200,6 @@
         </form>
 
     </div>
-
-    
 
     <div class="reviews">
 
